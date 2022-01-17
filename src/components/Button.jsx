@@ -20,10 +20,10 @@ export const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Button({ children, onClick }) {
+function Button({ children, onClick, className }) {
   const cs = useStyles();
   return (
-    <button className={cs.buttonStyles} onClick={onClick}>
+    <button className={`${cs.buttonStyles} ${className}`} onClick={onClick}>
       {children}
     </button>
   );

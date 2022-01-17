@@ -3,6 +3,7 @@ import Button from "../../components/Button";
 import Input from "../../components/Input";
 import ImageSwapper from "./ImageSwapper/ImageSwapper";
 import { useStyles } from "./SignInStyles";
+import { useHistory, Link } from "react-router-dom";
 import { data } from "../../assets/images/AvatarImages";
 import { signIn } from "../../apis/user.api";
 function SignIn() {
@@ -12,10 +13,7 @@ function SignIn() {
     image: "",
     name: "",
   });
-
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
+  const history = useHistory();
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -27,6 +25,11 @@ function SignIn() {
 
   const handleSubmit = async (e) => {
     const existUser = await signIn(user);
+    if (existUser.user) {
+      history.push("/chat");
+    } else {
+      alert(existUser.msg);
+    }
     console.log(existUser);
   };
 
@@ -45,7 +48,7 @@ function SignIn() {
           placeholder="User Password"
         />
         <Button onClick={handleSubmit}>Create Account</Button>
-        <a href="/signin">Already have Account ?</a>
+        <Link to="/login">Already have Account ?</Link>
       </div>
     </div>
   );

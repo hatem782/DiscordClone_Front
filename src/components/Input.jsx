@@ -9,7 +9,7 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: "20px",
     display: "block",
     "&:focus": {
-      backgroundColor: "#E8F0FE",
+      //backgroundColor: "#E8F0FE",
     },
   },
 }));
